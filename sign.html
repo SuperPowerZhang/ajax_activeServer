@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+    <title></title>注册界面</title>
+</head>
+
+<body>
+    <h1>注册</h1>
+    <!-- action="/login.html" method='POST' -->
+    <form>
+        <span>姓名：</span><input type="text" name="name" value="1111" />
+        <span>密码：</span><input type="password" name="password" value="sss" />
+        <input type="submit" name="submit" value="注册" />
+    </form>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+<script>
+    $("form").on('submit', (e) => {
+        e.preventDefault()
+        let newUser = {}
+        newUser["name"] = $("input[name=name]").val()
+        newUser["password"] = $("input[name=password]").val()
+        console.log(newUser)
+        $.ajax({
+            type: "POST",
+            // url: "/login.html",
+            data: JSON.stringify(
+                newUser
+            ),
+            contentType: "text/json",
+            // dataType: "text/json",
+            success: function (response) {
+                alert("注册成功啦")
+                location.href = "/login.html"
+                // window.open("/login.html")可以的
+            }
+        });
+    })
+</script>
+
+</html>

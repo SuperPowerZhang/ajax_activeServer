@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录界面</title>
+</head>
+
+<body>
+    <h1>登录界面</h1>
+    <form>
+        <span>姓名：</span><input type="text" name="name" />
+        <span>密码：</span><input type="password" name="password" />
+        <input type="submit" name="submit" value="登录啦" />
+    </form>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+
+    <script>
+        $("form").on('submit', (e) => {
+            e.preventDefault()
+            let name = $("input[name=name]").val()
+            let password = $("input[name=password]").val()
+            console.log(name, password)
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify({
+                    name,
+                    password
+                }),
+                contentType: "text/json",
+                success: function (response) {
+                    alert("哈哈哈登录匹配成功")
+                    window.open("/index.html")
+                }
+            })
+
+        })
+    </script>
+
+</body>
+
+</html>
